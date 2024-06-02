@@ -1,20 +1,22 @@
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-import QuebraCabeca from './components/QuebraCabeca/QuebraCabeca.vue'
+import HelloWorld from "./components/HelloWorld.vue";
+import TheWelcome from "./components/TheWelcome.vue";
+import QuebraCabeca from "./components/QuebraCabeca/QuebraCabeca.vue";
+import ButtonCommoConfirm from "./components/ButtonCommon/ButtonCommon.vue";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    QuebraCabeca
-  }
+    QuebraCabeca,
+  },
 };
 </script>
 
 <template>
-  <QuebraCabeca />
+  <!-- <QuebraCabeca />
   <div>
-    AAAAAAAAAAAAAAAAAAAAAAA
-  </div>
+    <button class="button-confirm">Confirmar</button>
+  </div> -->
+  <RouterView />
 </template>
 
 <style scoped>
@@ -30,7 +32,6 @@ header {
 @media (min-width: 1024px) {
   header {
     display: flex;
-    place-items: center;
     padding-right: calc(var(--section-gap) / 2);
   }
 
@@ -40,7 +41,6 @@ header {
 
   header .wrapper {
     display: flex;
-    place-items: flex-start;
     flex-wrap: wrap;
   }
 }
