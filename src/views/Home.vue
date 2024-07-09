@@ -1,34 +1,40 @@
 <template class="">
-  <div class="divisao-template">
-    <div class="p-5 text-center w-100 mx-auto">
+  <div class="divisao-template ">
+    <div class="p-5 text-center w-100 mx-auto first-division">
       <p class="bem-vindo-text scale-up-center">BEM VINDO!</p>
       <p class="introducao-texto">
         Está pronto para se aventurar pelas curiosidades do Geoparque?
       </p>
+      <a href="#cracha" class="btn-lesgo">Vamos nessa!</a>
     </div>
-    <div class="col-12">
+
+    <div class="col-12 second-division" id="cracha">
       <div class="cordao-cracha"></div>
       <div class="cracha-body">
         <div class="cracha-content">
           <div class="cracha-header">
-            <p class="text-visitante">Visitante</p>
+            <p class="text-visitante">CRACHA DE VISITANTE</p>
           </div>
           <div class="row d-flex">
             <div class="col-4">
-              <img
-                src="https://via.placeholder.com/150"
-                alt="Foto do visitante"
-              />
+              <img src="https://via.placeholder.com/150" alt="Foto do visitante" />
             </div>
-            <div class="col-8 p-4">
-              <p class="h5">Nome:</p>
+            <div class="col-8 p-3">
               <div>
-                <input type="text" class="form-control" />
+                <p class="h5">Nome do aventureiro:</p>
+                <div>
+                  <input type="text" class="cracha-input" />
+                </div>
+              </div>
+              <div class='mt-3'>
+                <p class="h5">Setor: <span class="text-uppercase">PASSEIO</span></p>
               </div>
             </div>
           </div>
         </div>
-        <div class="footer-cracha"></div>
+        <div class="footer-cracha">
+          <p class="text-center m-0 p-0">CÓDIGO 123847 - ÁREA DE ACESSO RESTRITA</p>
+        </div>
       </div>
     </div>
 
@@ -77,21 +83,25 @@ export default {
     -webkit-transform: scale(0.5);
     transform: scale(0.5);
   }
+
   100% {
     -webkit-transform: scale(1);
     transform: scale(1);
   }
 }
+
 @keyframes scale-up-center {
   0% {
     -webkit-transform: scale(0.5);
     transform: scale(0.5);
   }
+
   100% {
     -webkit-transform: scale(1);
     transform: scale(1);
   }
 }
+
 .scale-up-center {
   -webkit-animation: scale-up-center 3s cubic-bezier(0.39, 0.575, 0.565, 1) both;
   animation: scale-up-center 3s cubic-bezier(0.39, 0.575, 0.565, 1) both;
@@ -104,6 +114,19 @@ export default {
   /* coloca como se tivesse um relevo em um branco clarinho */
   text-shadow: 5px 10px 5px #444444;
 }
+
+.cracha-input {
+  width: 100%;
+  height: 3rem;
+  border-radius: 0.1rem;
+  border: 1px solid #acacac;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: 0.4rem;
+}
+
 .button a {
   color: white;
   font-family: Helvetica, sans-serif;
@@ -160,21 +183,24 @@ export default {
   text-align: center;
   margin-top: 1.5rem;
 }
+
 .cracha-header {
-  background-color: blue;
+  background-color: rgb(39, 102, 19);
   color: #fff;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   padding: 0.4rem;
 }
+
 .cordao-cracha {
-  background-color: green;
+  background-color: rgb(246, 250, 24);
   height: 300px;
   width: 10px;
   margin: 0 auto;
   position: relative;
   top: 0;
 }
+
 .cracha-body {
   background-color: #fff;
   height: 30vh;
@@ -182,29 +208,56 @@ export default {
   color: #000;
   position: absolute;
   left: 30%;
-  border-radius: 1.2rem;
+  border-top-left-radius: 1.2rem;
+  border-top-right-radius: 1.2rem;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
+
 .cracha-content {
   display: flex;
   flex-direction: column;
 }
+
+.first-division {
+  margin-top: 5rem;
+  height: 50%;
+  margin-bottom: 50%;
+}
+
+.second-division {
+  height: 50%;
+
+}
+
 .botao-continuar {
   height: 3rem;
-  position: absolute;
-  top: 65%;
-  left: 46%;
+  position: relative;
+  top: 35%;
   right: 0;
   width: 15rem;
+  /* padding-bottom: 1000px; */
 }
+
 .footer-cracha {
-  background-color: blue;
+  background-color: rgb(39, 102, 19);
   color: #fff;
   border-bottom-left-radius: 1rem;
-  margin-top: 1.6rem;
+  /* margin-top: 1.0rem; */
   border-bottom-right-radius: 1rem;
   padding: 0.4rem;
   height: 3rem;
 }
+
+.btn-lesgo {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+
+}
+
 .divisao-template {
   display: flex;
   justify-content: space-between;
@@ -213,6 +266,7 @@ export default {
 
   height: 100vh;
 }
+
 .introducao-texto {
   font-size: 1.5rem;
   font-weight: bold;
