@@ -17,7 +17,8 @@
           </div>
           <div class="row d-flex">
             <div class="col-4">
-              <img src="https://via.placeholder.com/150" alt="Foto do visitante" />
+              <img src="https://cdn-icons-png.flaticon.com/256/44/44948.png" class="img-fluid ms-5 p-3" width="150"
+                alt="Foto do visitante" />
             </div>
             <div class="col-8 p-3">
               <div>
@@ -47,19 +48,45 @@
 </template>
 <script>
 import TextTitleArcade from "@/components/TextTitleArcade/TextTitleArcade.vue";
-
+import Swal from "sweetalert2";
 export default {
   name: "Home",
   components: {
     TextTitleArcade,
   },
+  async beforeMount() {
+    // Swal.fire({
+    //   title: "Carregando...",
+    //   allowOutsideClick: false,
+    //   showConfirmButton: false,
+    //   willOpen: () => {
+    //     Swal.showLoading();
+    //   },
+    // });
+    // const res = await this.$api().get("/puzzle").then((result) => {
+    //           //sort puzzle
+    //     const puzzles = result.data;
+    //     const puzzle = puzzles[Math.floor(Math.random() * puzzles.length)];
+    //     this.puzzleSorted = puzzle;
+    //   Swal.close();
+    // }).catch((err) => {
+    //   Swal.fire({
+    //     icon: "error",
+    //     title: "Erro ao carregar o puzzle",
+    //     text: "Tente novamente mais tarde.",
+    //   });
+    // });
+  },
   methods: {
-    goToPuzzlePage() {
-      this.$router.push("/curiosidades");
+    async goToPuzzlePage() {
+      //sort puzzle from api call
+        this.$router.push({ name: "PuzzlePage", params: { id: puzzle.idPuzzle }});
+      //by name
     },
     data() {
       return {
         i: 2,
+        puzzleSorted: {},
       };
     },
   },

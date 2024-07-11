@@ -18,7 +18,7 @@ function interceptors() {
 
   //api.js
 import axios from 'axios';
-
+const urlApi = 'https://geoparque-spring.onrender.com/'
 const api = () => {
   const token = window.localStorage.getItem("auth_token")
   

@@ -2,7 +2,7 @@
   <div class="container mt-5">
     <h3>Cadastro de puzzle</h3>
 
-    <div class="p-5">
+    <div class="p-5 bg-white text-black">
       <FormularioCadastroPuzzle />
     </div>
   </div>

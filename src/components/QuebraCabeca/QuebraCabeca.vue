@@ -31,8 +31,14 @@ export default {
       ],
     };
   },
+  props: {
+    json: {
+      type: Object,
+      required: true,
+    },
+  },
   async mounted() {
-    await this.transformBase64ToImg(this.jsonTest[0].imagemBase64);
+    await this.transformBase64ToImg(this.json.imagemBase64);
     this.sketchInstance = new p5(this.sketch, this.$refs.p5Container);
   },
   beforeDestroy() {
@@ -53,6 +59,8 @@ export default {
       let w, h;
       let board = [];
       let img = this.imgUrl;
+      let ganhou = false;
+      let clicks = 0;
       p.preload = function () {
         //pega a imagem do quebra cabeça no assets e carrega
         console.log("Imagem: " + img);
@@ -118,17 +126,26 @@ export default {
             p.rect(x, y, w, h);
           }
         }
-
-        if (isSolved()) {
-          console.log("SOLVED");
+        if(ganhou){
+          
         }
-      };
+        if (isSolved()) {
+          p.noLoop(); // Para o desenho quando ganha
+          ganhou = isSolved();
+          //pega o escopo do componente e emite o evento
+          console.log(this)
+          this.$emit('ganhou'); // Emite o evento 'ganhou' para o pai
+        }
+      }.bind(this);
 
       p.mousePressed = function () {
         let i = p.floor(p.mouseX / w);
         let j = p.floor(p.mouseY / h);
+        clicks++;
+        if(clicks >= 30){
+        }
         move(i, j, board);
-      };
+      }.bind(this);
 
       function swap(i, j, arr) {
         let temp = arr[i];
@@ -143,7 +160,7 @@ export default {
       }
 
       function simpleShuffle(arr) {
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < 10; i++) {
           randomMove(arr);
         }
       }
@@ -181,7 +198,6 @@ export default {
             return false;
           }
         }
-        alert("U MADE IT");
         return true;
       }
 

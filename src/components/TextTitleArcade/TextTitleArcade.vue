@@ -1,5 +1,5 @@
 <template>
-  <p class="text-arcade">{{ msg.title }}</p>
+  <p class="text-arcade">{{ msg.titulo }}</p>
 </template>
 
 <script>
@@ -16,6 +16,5 @@ export default {
   font-size: 2.6rem;
   font-family: "ArcadeClassic", sans-serif;
   color: #e66000;
-  margin-top: 1rem;
 }
 </style>

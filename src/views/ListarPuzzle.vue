@@ -29,29 +29,43 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
 export default {
   name: "ListarPuzzle",
   data() {
     return {
       puzzles: [
-        {
-          idPuzzle: 1,
-          titulo: "Quebra Cabeça",
-          descricao: "Quebra cabeça de 4x4",
-          nivel: 1,
-        },
-        {
-          idPuzzle: 2,
-          titulo: "Quebra Cabeça 2",
-          descricao: "Quebra cabeça de 6x4",
-          nivel: 1,
-        },
       ],
     };
+  },
+  mounted() {
+    this.carregarPuzzles();
   },
   methods: {
     novoPuzzle() {
       this.$router.push({ name: "Puzzle" });
+    },
+    carregarPuzzles() {
+      Swal.fire({
+        title: "Carregando...",
+        allowOutsideClick: false,
+        showConfirmButton: false,
+        willOpen: () => {
+          Swal.showLoading();
+        },
+      });
+      //chamar a api
+      const res = this.$api().get("/puzzle").then((result) => {
+        this.puzzles = result.data;
+        Swal.close();
+
+      }).catch((err) => {
+          Swal.fire({
+            title: "Erro ao carregar os puzzles!",
+            icon: "error",
+            confirmButtonText: "OK",
+          });
+      });
     },
   },
 };

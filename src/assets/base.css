@@ -88,7 +88,7 @@ body {
 /* 
 .button-confirm {
   margin: 10px 0;
-  background-color: #4caf50;
+  background-color: #FFA12B;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -99,7 +99,7 @@ body {
 }
 
 .button-confirm:hover {
-  background-color: #2f6d32;
+  background-color: #FFA12B;
   transition: all 0.2s;
 } */
 
@@ -109,12 +109,16 @@ body {
   display: inline-block;
   margin: 20px;
 }
+/* BOTÃO COMUM DE PROXIMO E USAR NO SITE */
+.botao-comum-site a:hover {
+  background-color:#cc7100 ;
+}
 
 .botao-comum-site a {
-  color: white;
+  color: black;
   font-family: Helvetica, sans-serif;
   font-weight: bold;
-  font-size: 36px;
+  font-size: 28px;
   text-align: center;
   text-decoration: none;
   background-color: #FFA12B;

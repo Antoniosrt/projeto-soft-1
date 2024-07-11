@@ -1,7 +1,7 @@
 <template>
   <div on-touchstart="">
     <div class="botao-comum-site" @click="handleClick">
-      <a>{{ text }}</a>
+      <a class="text-white">{{ text }} </a>
     </div>
   </div>
 </template>

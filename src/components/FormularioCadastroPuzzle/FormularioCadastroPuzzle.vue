@@ -6,20 +6,11 @@
     </div>
     <div class="form-group mt-2">
       <label for="descricao">Descrição</label>
-      <textarea
-        class="form-control"
-        id="descricao"
-        v-model="descricao"
-      ></textarea>
+      <textarea class="form-control" id="descricao" v-model="descricao"></textarea>
     </div>
     <div class="form-group mt-2">
       <label for="imagem">Imagem</label>
-      <input
-        type="file"
-        class="form-control"
-        id="imagem"
-        @change="onFileChange"
-      />
+      <input type="file" class="form-control" id="imagem" ref="imagemBase64" multiple />
     </div>
     <div class="form-group mt-2">
       <label for="nivel">Nível</label>
@@ -37,6 +28,7 @@
   </form>
 </template>
 <script>
+import Swal from "sweetalert2";
 export default {
   name: "FormularioCadastroPuzzle",
   data() {
@@ -49,14 +41,44 @@ export default {
   },
   methods: {
     async salvarPuzzle() {
-      const puzzle = {
-        titulo: this.titulo,
-        descricao: this.descricao,
-        imagemBase64: this.imagemBase64,
-        nivel: this.nivel,
-      };
-      console.log(puzzle);
-      await this.$store.dispatch("puzzle/salvarPuzzle", puzzle);
+      let dataForm = new FormData();
+      dataForm.append("titulo", this.titulo);
+      dataForm.append("descricao", this.descricao);
+      dataForm.append("imagem", this.$refs.imagemBase64.files[0]);
+            // const puzzle = {
+      //   titulo: this.titulo,
+      //   descricao: this.descricao,
+      //   imagem: this.imagemBase64,
+      //   // nivel: this.nivel,
+      // };
+      // await this.$store.dispatch("puzzle/salvarPuzzle", puzzle);
+      //loading
+      Swal.fire({
+        title: "Salvando...",
+        allowOutsideClick: false,
+        showConfirmButton: false,
+        onBeforeOpen: () => {
+          Swal.showLoading();
+        },
+      });
+      const res = await this.$api().post("/puzzle", dataForm,
+        { headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }
+      ).then((result) => {
+          Swal.fire({
+            title: "Puzzle cadastrado com sucesso!",
+            icon: "success",
+            confirmButtonText: "OK",
+          });
+      }).catch((err) => {
+        Swal.fire({
+          title: "Erro ao cadastrar o puzzle!",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+      });
       this.$router.push({ name: "QuebraCabeca" });
     },
     onFileChange(e) {
