@@ -130,7 +130,7 @@ export default {
       let attemptsPlus = this.$route.query.attempts;
       attemptsPlus = parseInt(attemptsPlus) + 1;
       this.$router.push({ name: "PuzzlePage", params: { id: this.nextPuzzle }, query: { name: this.$route.query.name, attempts:attemptsPlus  } }).then(() => {
-        location.reload(); //force reload
+        // location.reload(); //force reload
       });
       //force reload
     }else if(this.$route.query.attempts >= 3){
