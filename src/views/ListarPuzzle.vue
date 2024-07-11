@@ -2,7 +2,7 @@
   <div class="container mt-5 table-dark">
     <h3>Lista de Puzzles</h3>
     <button class="btn btn-primary" @click="novoPuzzle">Novo Puzzle</button>
-    <table class="table mt-3">
+    <table class="bg-white text-black mt-3 table-lg">
       <thead>
         <tr>
           <th>Id</th>
@@ -20,7 +20,6 @@
           <td>{{ puzzle.nivel }}</td>
           <td>
             <button class="btn btn-primary">Editar</button>
-            <button class="btn btn-danger">Excluir</button>
           </td>
         </tr>
       </tbody>
@@ -37,7 +36,7 @@ export default {
       puzzles: [
       ],
     };
-  },
+},
   mounted() {
     this.carregarPuzzles();
   },
@@ -45,7 +44,7 @@ export default {
     novoPuzzle() {
       this.$router.push({ name: "Puzzle" });
     },
-    carregarPuzzles() {
+   async carregarPuzzles() {
       Swal.fire({
         title: "Carregando...",
         allowOutsideClick: false,
@@ -55,7 +54,7 @@ export default {
         },
       });
       //chamar a api
-      const res = this.$api().get("/puzzle").then((result) => {
+      const res = await this.$api().get("/puzzle").then((result) => {
         this.puzzles = result.data;
         Swal.close();
 

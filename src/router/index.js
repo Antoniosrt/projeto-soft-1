@@ -50,11 +50,11 @@ router.beforeEach((to, from, next) => {
     
     // Se a rota não precisa de autorização ou o token existe, então a navegação é permitida
 
-    // if( withoutAuthorization.includes(to.name) || token ) {
+    if( withoutAuthorization.includes(to.name) || token ) {
       next()
-    // } else {
-    //   next({ name: "ErroAutenticacao" })
-    // }
+    } else {
+      next({ name: "ErroAutenticacao" })
+    }
   })
   
 

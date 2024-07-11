@@ -2,18 +2,18 @@
   <div class='h4 text-white mt-3'>
     Visitante: {{ this.$route.query.name }}. Tentativas: {{ this.$route.query.attempts }}
   </div>
-  <div v-if="quebraCabeca.idPuzzle" class="mt-5">
+  <div v-if="quebraCabeca.idPuzzle" class="mt-5 px-5">
     <div class="row d-flex flex-row">
-      <div class="w-50">
+      <div class=" metade-1">
         <QuebraCabeca :json="quebraCabeca" v-if="quebraCabeca.idPuzzle" @ganhou="onGanhou" />
         <div v-if="pularLivre">
           <ButtonCommon text="Pular" :onClickAction="ganhouNext" />
         </div>
       </div>
-      <div class="w-50">
+      <div class=" metade-2">
         <TextTitleArcade :msg="quebraCabeca" />
 
-        <div class="text-infos">
+        <div class="text-infos p-3">
           {{ quebraCabeca.descricao }}
         </div>
       </div>
@@ -144,4 +144,22 @@ export default {
   
 };
 </script>
-<style scoped></style>
+<style scoped>
+.metade-1 {
+  /* margin-right: 10%; */
+  width: 40%;
+}
+
+.metade-2 {
+  /* margin-left: 10%; */
+  width: 60%;
+}
+
+.text-infos {
+  border-radius: 5px;
+  margin-top: 10px;
+  padding: 10px;
+  text-align: justify;
+  font-size: 1.2em;
+}
+</style>

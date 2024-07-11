@@ -1,6 +1,6 @@
 <template>
   <div class="container mt-5">
-    <h3>Cadastro de puzzle</h3>
+    <p class="h2">Cadastro de puzzle</p>
 
     <div class="p-5 bg-white text-black">
       <FormularioCadastroPuzzle />

@@ -71,6 +71,8 @@ export default {
             title: "Puzzle cadastrado com sucesso!",
             icon: "success",
             confirmButtonText: "OK",
+          }).then(() => {
+            this.$router.push({ name: "PuzzleList" });
           });
       }).catch((err) => {
         Swal.fire({

@@ -24,7 +24,7 @@
               <div>
                 <p class="h5">Nome do aventureiro:</p>
                 <div>
-                  <input type="text" class="cracha-input" />
+                  <input type="text" class="cracha-input" v-model="nomeAventureiro" />
                 </div>
               </div>
               <div class='mt-3'>
@@ -55,38 +55,40 @@ export default {
     TextTitleArcade,
   },
   async beforeMount() {
-    // Swal.fire({
-    //   title: "Carregando...",
-    //   allowOutsideClick: false,
-    //   showConfirmButton: false,
-    //   willOpen: () => {
-    //     Swal.showLoading();
-    //   },
-    // });
-    // const res = await this.$api().get("/puzzle").then((result) => {
-    //           //sort puzzle
-    //     const puzzles = result.data;
-    //     const puzzle = puzzles[Math.floor(Math.random() * puzzles.length)];
-    //     this.puzzleSorted = puzzle;
-    //   Swal.close();
-    // }).catch((err) => {
-    //   Swal.fire({
-    //     icon: "error",
-    //     title: "Erro ao carregar o puzzle",
-    //     text: "Tente novamente mais tarde.",
-    //   });
-    // });
+    Swal.fire({
+      title: "Carregando...",
+      allowOutsideClick: false,
+      showConfirmButton: false,
+      willOpen: () => {
+        Swal.showLoading();
+      },
+    });
+    const res = await this.$api().get("/puzzle").then((result) => {
+              //sort puzzle
+        const puzzles = result.data;
+        const puzzle = puzzles[Math.floor(Math.random() * puzzles.length)];
+        this.puzzleSorted = puzzle;
+      Swal.close();
+    }).catch((err) => {
+      Swal.fire({
+        icon: "error",
+        title: "Erro ao carregar o puzzle",
+        text: "Tente novamente mais tarde.",
+      });
+    });
   },
   methods: {
     async goToPuzzlePage() {
-      //sort puzzle from api call
-        this.$router.push({ name: "PuzzlePage", params: { id: puzzle.idPuzzle }});
+      //coloca nome em  maiusulo
+      nomeAventureiro = this.nomeAventureiro.toUpperCase();
+        this.$router.push({ name: "PuzzlePage", params: { id: this.puzzleSorted.idPuzzle }, query: { name:nomeAventureiro , attempts: 0 }});
       //by name
     },
     data() {
       return {
         i: 2,
         puzzleSorted: {},
+        nomeAventureiro: "",
       };
     },
   },
@@ -152,6 +154,7 @@ export default {
   font-weight: bold;
   text-transform: uppercase;
   margin-top: 0.4rem;
+  background-color: white;
 }
 
 .button a {
