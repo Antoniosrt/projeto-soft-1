@@ -54,7 +54,11 @@ export default {
   },
   mounted() {
     //pega o id da query string e faz a requisição para pegar o puzzle
-    Swal.fire({
+    this.carregaPuzzle();
+  },
+  methods: {
+    carregaPuzzle(){
+      Swal.fire({
       title: "Carregando...",
       allowOutsideClick: false,
       showConfirmButton: false,
@@ -74,8 +78,7 @@ export default {
         this.$router.push("/");
       });
     });
-  },
-  methods: {
+    },
     goToHomePage() {
       this.$router.push("/");
     },
@@ -129,6 +132,7 @@ export default {
       //converte para numero e soma
       let attemptsPlus = this.$route.query.attempts;
       attemptsPlus = parseInt(attemptsPlus) + 1;
+      this.ganhou = false;
       this.$router.push({ name: "PuzzlePage", params: { id: this.nextPuzzle }, query: { name: this.$route.query.name, attempts:attemptsPlus  } }).then(() => {
         // location.reload(); //force reload
       });

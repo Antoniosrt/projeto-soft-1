@@ -37,7 +37,7 @@ export default {
       required: true,
     },
   },
-  async mounted() {
+    async mounted() {
     await this.transformBase64ToImg(this.json.imagemBase64);
     this.sketchInstance = new p5(this.sketch, this.$refs.p5Container);
   },
@@ -160,7 +160,7 @@ export default {
       }
 
       function simpleShuffle(arr) {
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 1000; i++) {
           randomMove(arr);
         }
       }
