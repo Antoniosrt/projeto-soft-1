@@ -91,11 +91,13 @@ export default {
     onPularLivre() {
       this.pularLivre = true;
     },
-    puzzleSortNumber(puzzles) {
+    async puzzleSortNumber(puzzles) {
+      console.log(puzzles)
       const puzzle = puzzles[Math.floor(Math.random() * puzzles.length)];
       if(puzzle.idPuzzle === this.quebraCabeca.idPuzzle){
-        return this.puzzleSortNumber(puzzles);
+         return this.puzzleSortNumber(puzzles);
       }
+      this.nextPuzzle = puzzle.idPuzzle;
       return puzzle;
     },
     async ganhouNext() {
@@ -108,10 +110,10 @@ export default {
         Swal.showLoading();
       },
     });
-    const res = await this.$api().get("/puzzle").then((result) => {
+    const res = await this.$api().get("/puzzle").then(async (result) => {
               //sort puzzle
         const puzzles = result.data;
-        const puzzle = puzzleSortNumber(puzzles);
+        const puzzle = await this.puzzleSortNumber(result.data);
       Swal.close();
       return puzzle;
     }).catch((err) => {
@@ -121,14 +123,16 @@ export default {
         text: "Tente novamente mais tarde.",
       });
     });
-    this.nextPuzzle = 1;
 
     console.log(this.nextPuzzle)
     if(this.nextPuzzle != 0 && this.$route.query.attempts < 3 ){
       //converte para numero e soma
       let attemptsPlus = this.$route.query.attempts;
       attemptsPlus = parseInt(attemptsPlus) + 1;
-      this.$router.push({ name: "PuzzlePage", params: { id: this.nextPuzzle }, query: { name: this.$route.query.name, attempts:attemptsPlus  } });
+      this.$router.push({ name: "PuzzlePage", params: { id: this.nextPuzzle }, query: { name: this.$route.query.name, attempts:attemptsPlus  } }).then(() => {
+        location.reload(); //force reload
+      });
+      //force reload
     }else if(this.$route.query.attempts >= 3){
       Swal.fire({
         title: "Você ganhou!",

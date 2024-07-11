@@ -33,8 +33,9 @@ export default {
         title: "Ufa que susto!",
         text: "Parece que ele não esta mais nos seguindo, estamos seguros!",
         confirmButtonText: "OQ Q FOI ISSO?!",
+      }).then(() => {
+        this.$router.push("/");
       });
-      this.$router.push("/");
     },
   },
 };

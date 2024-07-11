@@ -31,7 +31,12 @@ const routes = [
         path: '/unauthorized',
         name: 'ErroAutenticacao',
         component: () => import('../views/Unauthorized.vue')
-    }
+    },
+    {
+      path: "/login",
+      name: "Login",
+      component: () => import("../views/Login.vue"),
+    },
 ]
 
 const router = createRouter({
@@ -43,7 +48,8 @@ const withoutAuthorization = [
     'Home',
     'PuzzlePage',
     'Puzzle',
-    'PuzzleList'
+    'PuzzleList',
+    'Login'
   ]
 router.beforeEach((to, from, next) => {
     let token = window.localStorage.getItem("auth_token")

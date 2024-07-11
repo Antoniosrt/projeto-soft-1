@@ -39,7 +39,7 @@
       </div>
     </div>
 
-    <div ontouchstart="" class="botao-continuar" @click="this.goToPuzzlePage">
+    <div ontouchstart="" class="botao-continuar" @click="goToPuzzlePage">
       <div class="button">
         <a>Visitar</a>
       </div>
@@ -80,18 +80,18 @@ export default {
   methods: {
     async goToPuzzlePage() {
       //coloca nome em  maiusulo
-      let nomeAventureiro = this.nomeAventureiro.toUpperCase();
-        this.$router.push({ name: "PuzzlePage", params: { id: this.puzzleSorted.idPuzzle }, query: { name:nomeAventureiro , attempts: 0 }});
+      let nomeAventureiroMais = this.nomeAventureiro.toUpperCase();
+        this.$router.push({ name: "PuzzlePage", params: { id: this.puzzleSorted.idPuzzle }, query: { name:nomeAventureiroMais , attempts: 0 }});
       //by name
-    },
-    data() {
+    }, 
+   },
+  data() {
       return {
         i: 2,
         puzzleSorted: {},
         nomeAventureiro: "",
       };
-    },
-  },
+    }
 };
 </script>
 <style scoped>

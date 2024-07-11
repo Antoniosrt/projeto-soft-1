@@ -19,7 +19,7 @@
           <td>{{ puzzle.descricao }}</td>
           <td>{{ puzzle.nivel }}</td>
           <td>
-            <button class="btn btn-primary">Editar</button>
+            <button class="btn btn-primary">Editar-Disabilitado</button>
           </td>
         </tr>
       </tbody>

@@ -81,7 +81,7 @@ export default {
           confirmButtonText: "OK",
         });
       });
-      this.$router.push({ name: "QuebraCabeca" });
+      this.$router.push({ name: "PuzzleList" });
     },
     onFileChange(e) {
       const file = e.target.files[0];
