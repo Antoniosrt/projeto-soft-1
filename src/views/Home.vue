@@ -80,7 +80,7 @@ export default {
   methods: {
     async goToPuzzlePage() {
       //coloca nome em  maiusulo
-      nomeAventureiro = this.nomeAventureiro.toUpperCase();
+      let nomeAventureiro = this.nomeAventureiro.toUpperCase();
         this.$router.push({ name: "PuzzlePage", params: { id: this.puzzleSorted.idPuzzle }, query: { name:nomeAventureiro , attempts: 0 }});
       //by name
     },
