@@ -21,6 +21,7 @@
 import TextTitleArcade from "@/components/TextTitleArcade/TextTitleArcade.vue";
 import QuebraCabeca from "@/components/QuebraCabeca/QuebraCabeca.vue";
 import ButtonCommon from "@/components/ButtonCommon/ButtonCommon.vue";
+import { apiPlugin } from "@/components/utils/api";
 export default {
   name: "PuzzlePage",
   components: {
@@ -33,6 +34,11 @@ export default {
       title: "Quebra-Cabeça",
       text: "Arraste as peças para montar a imagem.",
     };
+  },
+  beforeCreate() {
+    //pega o id da query string e faz a requisição para pegar o puzzle
+    console.log(this.$route.query.id);
+    const res = apiPlugin.get(`/puzzle/${this.$route.query.id}`);
   },
   methods: {
     goToHomePage() {
